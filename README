@@ -7,3 +7,17 @@ It works, but there may be bugs!
 
 Peace
 -=n3uromanc3r!=-
+
+
+Dependencies:
+This is merely a GUI for the commandline utility 'ebook-convert', that is
+provided with the Calibre eBook Management software (found in most distro's repos).
+So you'll need that installed for a start!
+
+Also, this version relies on notify-send to relay a message upon successful conversion.
+Later version will need some fallback for systems without this installed I'm sure.
+
+How to use:
+
+Simply execute the provided ebook-converter.py python file and you're away.
+You may want to make the file executable.
