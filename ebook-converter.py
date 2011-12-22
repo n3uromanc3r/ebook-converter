@@ -6,14 +6,8 @@
 import wx
 import os
 
-# begin wxGlade: extracode
-# end wxGlade
-
-
-
 class Frame(wx.Frame):
     def __init__(self, *args, **kwds):
-        # begin wxGlade: Frame.__init__
         kwds["style"] = wx.DEFAULT_FRAME_STYLE
         wx.Frame.__init__(self, *args, **kwds)
         self.button = wx.Button(self, -1, "Select eBook file to convert...")
@@ -27,19 +21,15 @@ class Frame(wx.Frame):
         
         self.Bind(wx.EVT_BUTTON, self.onClicked, self.button)
         self.Bind(wx.EVT_BUTTON, self.onClicked2, self.button_2)
-        # end wxGlade
 
     def __set_properties(self):
-        # begin wxGlade: Frame.__set_properties
         self.SetTitle("eBook Converter")
         self.SetSize((500, 170))
         self.text_ctrl.SetMinSize((250, 27))
         self.choice.SetSelection(0)
         self.button_2.SetMinSize((100, 40))
-        # end wxGlade
 
     def __do_layout(self):
-        # begin wxGlade: Frame.__do_layout
         sizer_1 = wx.BoxSizer(wx.VERTICAL)
         sizer_2 = wx.BoxSizer(wx.VERTICAL)
         sizer_4 = wx.BoxSizer(wx.HORIZONTAL)
@@ -55,9 +45,8 @@ class Frame(wx.Frame):
         self.SetSizer(sizer_1)
         self.Layout()
         self.SetSize((500, 170))
-        # end wxGlade
         
-    def onClicked(self, event): # wxGlade: Frame.<event_handler>
+    def onClicked(self, event):
 		self.dirname = ''
 		dlg = wx.FileDialog(self, "Choose an eBook file to convert", self.dirname,"", "*.*", wx.OPEN)
 		if dlg.ShowModal()==wx.ID_OK:
@@ -74,17 +63,14 @@ class Frame(wx.Frame):
 			destinationebookpathandfilename = "%s/%s" % (ebookworkingdir, ebookfilename)
 			self.text_ctrl.SetValue(ebookfilename)
 		
-    def onClicked2(self, event): # wxGlade: Frame.<event_handler>
+    def onClicked2(self, event):
         global selectedfiletype
         selectedfiletype = self.choice.GetStringSelection()
         cmd="ebook-convert '%(var1)s' '%(var2)s'.'%(var3)s'"
         cmd = cmd % { 'var1' : fullebookpathandfilename, 'var2' : destinationebookpathandfilename, 'var3' : selectedfiletype } 
         os.system(cmd)
         os.system('notify-send Conversion complete!')
-        
-# end of class Frame
-
-
+    
 if __name__ == "__main__":
     app = wx.PySimpleApp(0)
     wx.InitAllImageHandlers()
